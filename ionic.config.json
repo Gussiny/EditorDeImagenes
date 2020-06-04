@@ -1,5 +1,7 @@
 {
   "name": "imageEditor",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
