@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ImageCroppedEvent, ImageCropperComponent, ImageTransform, base64ToFile } from 'ngx-image-cropper';
+import { ImageCropperComponent} from 'ngx-image-cropper';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { ToastController, ActionSheetController } from '@ionic/angular';
-import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({

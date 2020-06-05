@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { base64ToFile } from 'ngx-image-cropper';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
@@ -33,6 +32,7 @@ export class GuardarPage {
     ).then(
       (path) => {
         this.presentToast(path);
+        this.router.navigate(['/']);
       },
       (err) => {
         this.presentToast(err);
