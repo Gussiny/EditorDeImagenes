@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'guardar',
     loadChildren: () => import('./pages/guardar/guardar.module').then( m => m.GuardarPageModule)
   },
+  {
+    path: 'filtros',
+    loadChildren: () => import('./pages/filtros/filtros.module').then( m => m.FiltrosPageModule)
+  },
 ];
 
 @NgModule({

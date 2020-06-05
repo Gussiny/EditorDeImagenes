@@ -1,0 +1,27 @@
+ion-slides {
+    margin-top: 10px;
+}
+
+ion-slide {
+    flex-direction: column;
+    font-size: small;
+
+    ion-text {
+        padding: 5px;
+    }
+
+    .selected {
+        font-weight: 600;
+    }
+}
+
+.vertical-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+.logo-position{
+    text-align: center;
+  }
+  

@@ -27,7 +27,7 @@ export class GuardarPage {
       this.imagenCortada,
       {
         prefix: 'img_',
-        mediaScanner: true
+        mediaScanner: false
       }
     ).then(
       (path) => {

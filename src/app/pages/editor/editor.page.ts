@@ -51,7 +51,7 @@ export class EditorPage {
         imagenCortada: this.imagenCortada
       }
     };
-    this.router.navigate(['guardar'], navigationExtras);
+    this.router.navigate(['filtros'], navigationExtras);
   }
 
   //  MOSTRAR TOAST

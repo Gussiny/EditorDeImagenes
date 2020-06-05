@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="guardarImagen()">
+        <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="vertical-center">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col class="logo-position">
+        <div id="preview" *ngIf="imagen">
+          <web-photo-filter 
+            [class.no-original]="selectedFilter != ''" 
+            [class.only-original]="selectedFilter == ''"
+            [src]="imagen" 
+            keep="true" 
+            [filter]="selectedFilter" 
+            (filterLoad)="imageLoaded($event)">
+          </web-photo-filter>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+</ion-content>
+
+<ion-footer>
+  <ion-slides [options]="slideOpts" *ngIf="imagen">
+    <ion-slide *ngFor="let opts of filterOptions; let i = index;" tappable (click)="filter(i)">
+      <ion-text [class.selected]="i == selectedIndex">{{ opts.name }}</ion-text>
+      <div id="preview">
+        <web-photo-filter 
+          [class.no-original]="i > 0" 
+          [src]="imagen" 
+          keep="false" 
+          [filter]="opts.value">
+        </web-photo-filter>
+      </div>
+    </ion-slide>
+ 
+  </ion-slides>
+</ion-footer>
+
+<ion-footer>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button color="dark" fill="clear" expand="full">
+          <ion-icon name="color-filter-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
