@@ -1,0 +1,43 @@
+#container {
+    text-align: center;
+  
+    margin: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#container strong {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+#container p {
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #8c8c8c;
+
+    margin: 0;
+}
+
+#container a {
+    text-decoration: none;
+}
+
+ion-header{
+    text-align: center;
+}
+
+ion-card-header{
+    text-align: center;
+}
+img{
+    height: auto;
+    width: auto;
+    margin: auto;
+    display: block;
+  }

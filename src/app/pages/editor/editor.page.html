@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="close" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="guardarImagen()">
+        <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="imagen">
+    <ion-card-content>
+      <image-cropper
+        [imageBase64] = "imagen"
+        [maintainAspectRatio] = "maintainAspect"
+        [containWithinAspectRatio] ="containWithinAspectRatio"
+        [aspectRatio] = "aspect"
+        [onlyScaleDown] ="true"
+        [roundCropper] ="false"
+        [canvasRotation] ="canvasRotation"
+        [transform] ="transform"
+        [alignImage] ="'center'"
+        [disabled] = "disabled"
+        [style.display]="showCropper ? null : 'none'"
+        format = "png"
+        (imageCropped) = "cortarImagen($event)"
+        (imageLoaded)="imageLoaded()"
+        outputType = "base64">
+      </image-cropper>
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="4">
+          <ion-button (click)="cortar()" color="dark" expand="full" shape="round">
+            <ion-icon slot="icon-only" name="crop"></ion-icon>
+          </ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button (click)="rotar()" color="dark" expand="full" shape="round">
+              <ion-icon slot="icon-only" name="refresh"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button (click)="zoom()" color="dark" expand="full" shape="round">
+              <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- CONTROLES DE ROTACION -->
+      <ion-grid fixed *ngIf="menuRotar">
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="rotarIzquierda()" color="dark" expand="full" shape="round">
+              <ion-icon class="rotate" slot="icon-only" name="refresh-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="rotarDerecha()" color="dark" expand="full" shape="round">
+              <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="voltearH()" color="dark" expand="full" shape="round">
+              <ion-icon slot="icon-only" name="swap-horizontal-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="voltearV()" color="dark" expand="full" shape="round">
+              <ion-icon slot="icon-only" name="swap-vertical-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+      <!-- CONTROLES DE RECORTE -->
+      <ion-grid fixed *ngIf="menuCortar">
+        <ion-row>
+          <ion-col size="3">
+            <ion-button (click)="aspect1()" color="dark" expand="full" shape="round">
+              <ion-icon slot="icon-only" name="square-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="aspect4()" color="dark" expand="full" shape="round">
+              <ion-icon slot="icon-only" name="tablet-landscape-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="aspect16()" color="dark" expand="full" shape="round">
+              16:9
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="aspectLibre()" color="dark" expand="full" shape="round"> 
+              Libre
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+      <!-- CONTROLES DE ZOOM -->
+      <ion-grid fixed *ngIf="menuZoom">
+        <ion-row>
+          <ion-col size="6">
+            <ion-button (click)="zoomIn()" color="dark" expand="full" shape="round">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button (click)="zoomOut()" color="dark" expand="full" shape="round">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+     
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button (click)="reset()" color="dark" expand="full" shape="round">
+              Reset Imagen
+            </ion-button>
+          </ion-col>        
+        </ion-row>
+      </ion-grid>
+      
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

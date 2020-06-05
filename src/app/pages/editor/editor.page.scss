@@ -1,9 +1,16 @@
+.rotate {
+    display: inline-block; 
+    transform: scaleX(-1);
+  }
 #container {
   text-align: center;
+
+  margin: 0;
   position: absolute;
   left: 0;
   right: 0;
   top: 50%;
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
@@ -23,9 +30,4 @@
 
 #container a {
   text-decoration: none;
-}
-
-ion-title {
-  font-size: 30px;
-  text-align: center;
 }

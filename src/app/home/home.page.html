@@ -6,125 +6,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" padding>
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense" translucent="true">
     <ion-toolbar>
-      <ion-title size="large">Editor de Fotos</ion-title>
+      <ion-title size="large">Image Editor</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-row>
-    <ion-col size="12">
-      <ion-buttons>
-        <ion-button (click)="cargarDefault()" shape="round">
+  <ion-card>
+    <ion-card-content>
+      <img src="assets/icon/icon.png">
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="cargarDefault()" color="dark" expand="full" shape="round">
           <ion-icon slot="start" name="image-outline"></ion-icon>Cargar Default
         </ion-button>
-        <ion-button (click)="capturarImagen()" shape="round">
+      </ion-col>
+      <ion-col size="12">
+        <ion-button (click)="capturarImagen()" color="dark" expand="full" shape="round">
           <ion-icon slot="start"name="folder-outline"></ion-icon>Abrir Imagen
         </ion-button>
-      </ion-buttons>
-    </ion-col>
-  </ion-row>
-  
-
-  <ion-card *ngIf="imagen">
-    <ion-card-content>
-      <image-cropper
-        [imageBase64] = "imagen"
-        [maintainAspectRatio] = "maintainAspect"
-        [containWithinAspectRatio] ="containWithinAspectRatio"
-        [aspectRatio] = "aspect"
-        [autoCrop] = "true"
-        [onlyScaleDown] ="true"
-        [roundCropper] ="false"
-        [canvasRotation] ="canvasRotation"
-        [transform] ="transform"
-        [alignImage] ="'center'"
-        format = "png"
-        (imageCropped) = "cortarImagen($event)"
-        outputType = "base64">
-      </image-cropper>
-      <ion-row>
-        <ion-col size="3">
-          <ion-button (click)="rotarIzquierda()" color="dark" expand="full" shape="round">
-            <ion-icon class="rotate" slot="icon-only" name="refresh-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button (click)="rotarDerecha()" color="dark" expand="full" shape="round">
-            <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button (click)="voltearH()" color="dark" expand="full" shape="round">
-            <ion-icon slot="icon-only" name="swap-horizontal-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button (click)="voltearV()" color="dark" expand="full" shape="round">
-            <ion-icon slot="icon-only"name="swap-vertical-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="3">
-          <ion-button (click)="aspect1()" color="dark" expand="full" shape="round">
-            1:1
-          </ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button (click)="aspect4()" color="dark" expand="full" shape="round">
-            4:3
-          </ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button (click)="aspect16()" color="dark" expand="full" shape="round">
-            16:9
-          </ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button (click)="aspectLibre()" color="dark" expand="full" shape="round"> 
-            Libre
-          </ion-button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-button (click)="reset()" color="dark" expand="full" shape="round">
-            Reset Imagen
-          </ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button (click)="guardarImagen()" color="dark" expand="full" shape="round">
-            Guardar Imagen
-          </ion-button>
-        </ion-col>
-        
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-  
-  
-  <!-- 
-  <ion-card *ngIf="imagenCortada">
-    <ion-card-header>
-      <ion-card-title>Imagen Cortada</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <img [src] = "imagenCortada">
-    </ion-card-content>
-  </ion-card>
-  -->
-
-  <ion-card *ngIf="imagenCargada">
-    <ion-card-header>
-      <ion-card-title>Imagen Cargada</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <img [src] = "imagenCargada">
-    </ion-card-content>
-  </ion-card>
-
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+   
 </ion-content>

@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'editor',
+    loadChildren: () => import('./pages/editor/editor.module').then( m => m.EditorPageModule)
+  },
+  {
+    path: 'guardar',
+    loadChildren: () => import('./pages/guardar/guardar.module').then( m => m.GuardarPageModule)
+  },
 ];
 
 @NgModule({

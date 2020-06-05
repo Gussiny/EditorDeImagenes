@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { IonicModule } from '@ionic/angular';
+
+import { EditorPageRoutingModule } from './editor-routing.module';
+
+import { EditorPage } from './editor.page';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
@@ -12,9 +14,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    EditorPageRoutingModule,
     ImageCropperModule
   ],
-  declarations: [HomePage]
+  declarations: [EditorPage]
 })
-export class HomePageModule {}
+export class EditorPageModule {}
