@@ -25,3 +25,8 @@
 #container a {
   text-decoration: none;
 }
+
+.rotate {
+  display: inline-block; 
+  transform: scaleX(-1);
+}
