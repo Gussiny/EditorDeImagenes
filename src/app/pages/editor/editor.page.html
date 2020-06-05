@@ -2,6 +2,9 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button text="" icon="close" defaultHref="home"></ion-back-button>
+      <ion-button (click)="reset()" color="dark" expand="block">
+        Reset Imagen
+      </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="guardarImagen()">
@@ -37,9 +40,7 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-button (click)="reset()" color="dark" expand="block">
-          Reset Imagen
-        </ion-button>
+        
       </ion-col>
     </ion-row>
   </ion-grid>
