@@ -1,14 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ImageCroppedEvent, ImageCropperComponent, ImageTransform } from 'ngx-image-cropper';
+import { ImageCroppedEvent, ImageCropperComponent, ImageTransform, base64ToFile } from 'ngx-image-cropper';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
-import { File, FileEntry } from '@ionic-native/file/ngx';
-import { Storage } from '@ionic/storage';
 import { ToastController, ActionSheetController, Platform } from '@ionic/angular';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 
-import { FilePath } from '@ionic-native/file-path/ngx';
-
-const STORAGE_KEY = 'mis_imagenes';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,6 +13,7 @@ const STORAGE_KEY = 'mis_imagenes';
 export class HomePage {
   imagen = null;
   imagenCortada = null;
+  imagenPrevia = null;
   imagenCargada: any;
   canvasRotation = 0;
   rotation = 0;
@@ -28,11 +25,14 @@ export class HomePage {
   containWithinAspectRatio = false;
 
   @ViewChild(ImageCropperComponent, { static: false}) angularCropper: ImageCropperComponent;
-  constructor(private camara: Camera, private file: File, private toast: ToastController, private storage: Storage,
-              private asC: ActionSheetController, private plt: Platform, private filePath: FilePath ) {}
+  constructor(private camara: Camera,
+              private toast: ToastController,
+              private asC: ActionSheetController,
+              private base64ToGallery: Base64ToGallery
+              ) {}
 
   imageLoaded() {
-    // show cropper
+    this.imagenPrevia = this.imagen;
   }
   cropperReady() {
       // cropper ready
@@ -50,8 +50,7 @@ export class HomePage {
     );
   }
 
-  //  TOMAR IMAGEN DESDE LA CAMARA
-
+  //  TOMAR IMAGEN DESDE EL DISPOSITIVO
   async capturarImagen(sourceType: PictureSourceType){
     const actionSheet = await this.asC.create({
       header: 'Abrir Imagen',
@@ -82,7 +81,7 @@ export class HomePage {
       destinationType: this.camara.DestinationType.DATA_URL,
       saveToPhotoAlbum: false,
       correctOrientation: true,
-      sourceType: sourceType
+      sourceType
     };
 
     this.camara.getPicture(opciones).then((imageData) => {
@@ -93,6 +92,27 @@ export class HomePage {
 
   }
 
+
+  //  GUARDAR IMAGEN EN GALERIA
+  guardarImagen() {
+    base64ToFile(this.imagenCortada);
+    this.base64ToGallery.base64ToGallery(
+      this.imagenCortada,
+      {
+        prefix: 'img_',
+        mediaScanner: true
+      }
+    ).then(
+      (path) => {
+        this.presentToast(path);
+      },
+      (err) => {
+        this.presentToast(err);
+      }
+    );
+  }
+
+  //  MOSTRAR TOAST
   async presentToast(text) {
     const toast = await this.toast.create({
         message: text,
@@ -133,7 +153,7 @@ export class HomePage {
   }
 
   // GUARDAR CORTE
-  guardar() {
+  save() {
     this.angularCropper.crop();
   }
 

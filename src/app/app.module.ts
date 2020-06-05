@@ -13,6 +13,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { FilePath } from '@ionic-native/file-path/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     File,
     Camera,
-    FilePath
+    FilePath,
+    Base64ToGallery
   ],
   bootstrap: [AppComponent]
 })
