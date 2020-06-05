@@ -1,37 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Editor de Fotos
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense" translucent="true">
-    <ion-toolbar>
-      <ion-title size="large">Image Editor</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="vertical-center">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="logo-position">
+          <img class="logo" src="assets/icon/icon.png">
+          <ion-title>Image Editor</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button (click)="cargarDefault()" color="dark" expand="full" shape="round">
+            <ion-icon slot="start" name="image-outline"></ion-icon>Cargar Default
+          </ion-button>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button (click)="capturarImagen()" color="dark" expand="full" shape="round">
+            <ion-icon slot="start" name="folder-outline"></ion-icon>Abrir Imagen
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
-  <ion-card>
-    <ion-card-content>
-      <img src="assets/icon/icon.png">
-    </ion-card-content>
-  </ion-card>
-
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col size="12">
-        <ion-button (click)="cargarDefault()" color="dark" expand="full" shape="round">
-          <ion-icon slot="start" name="image-outline"></ion-icon>Cargar Default
-        </ion-button>
-      </ion-col>
-      <ion-col size="12">
-        <ion-button (click)="capturarImagen()" color="dark" expand="full" shape="round">
-          <ion-icon slot="start"name="folder-outline"></ion-icon>Abrir Imagen
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  
    
 </ion-content>

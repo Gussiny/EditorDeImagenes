@@ -5,6 +5,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  height: 100%;
 }
 
 #container strong {
@@ -28,4 +29,21 @@
 ion-title {
   font-size: 30px;
   text-align: center;
+}
+
+
+.vertical-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.logo-position{
+  text-align: center;
+  margin-bottom: 75px;
+}
+
+.logo{
+  width: 80%;
 }

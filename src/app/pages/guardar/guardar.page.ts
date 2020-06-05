@@ -11,7 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class GuardarPage {
 
   imagenCortada = null;
-  constructor(private toast: ToastController, private base64ToGallery: Base64ToGallery, private router: Router,  
+  constructor(private toast: ToastController, private base64ToGallery: Base64ToGallery, private router: Router,
               private route: ActivatedRoute) {
     this.route.queryParams.subscribe( params => {
       if (this.router.getCurrentNavigation().extras.state){
@@ -22,7 +22,7 @@ export class GuardarPage {
 
   //  GUARDAR IMAGEN EN GALERIA
   guardarImagen() {
-    //base64ToFile(this.imagenCortada);
+    // base64ToFile(this.imagenCortada);
     this.base64ToGallery.base64ToGallery(
       this.imagenCortada,
       {
