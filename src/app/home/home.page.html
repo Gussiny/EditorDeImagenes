@@ -19,7 +19,7 @@
         <ion-button (click)="cargarDefault()" shape="round">
           <ion-icon slot="start" name="image-outline"></ion-icon>Cargar Default
         </ion-button>
-        <ion-button (click)="abrirGaleria()" shape="round">
+        <ion-button (click)="capturarImagen()" shape="round">
           <ion-icon slot="start"name="folder-outline"></ion-icon>Abrir Imagen
         </ion-button>
       </ion-buttons>
@@ -111,5 +111,14 @@
     </ion-card-content>
   </ion-card>
   -->
+
+  <ion-card *ngIf="imagenCargada">
+    <ion-card-header>
+      <ion-card-title>Imagen Cargada</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <img [src] = "imagenCargada">
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

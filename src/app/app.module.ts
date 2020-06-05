@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { Camera } from '@ionic-native/camera/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     File,
-    Camera
+    Camera,
+    FilePath
   ],
   bootstrap: [AppComponent]
 })

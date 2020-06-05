@@ -1,6 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ImageCroppedEvent, ImageCropperComponent, ImageTransform } from 'ngx-image-cropper';
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
+import { File, FileEntry } from '@ionic-native/file/ngx';
+import { Storage } from '@ionic/storage';
+import { ToastController, ActionSheetController, Platform } from '@ionic/angular';
+
+import { FilePath } from '@ionic-native/file-path/ngx';
 
 const STORAGE_KEY = 'mis_imagenes';
 @Component({
@@ -11,6 +17,7 @@ const STORAGE_KEY = 'mis_imagenes';
 export class HomePage {
   imagen = null;
   imagenCortada = null;
+  imagenCargada: any;
   canvasRotation = 0;
   rotation = 0;
   scale = 1;
@@ -21,7 +28,8 @@ export class HomePage {
   containWithinAspectRatio = false;
 
   @ViewChild(ImageCropperComponent, { static: false}) angularCropper: ImageCropperComponent;
-  constructor() {}
+  constructor(private camara: Camera, private file: File, private toast: ToastController, private storage: Storage,
+              private asC: ActionSheetController, private plt: Platform, private filePath: FilePath ) {}
 
   imageLoaded() {
     // show cropper
@@ -43,8 +51,55 @@ export class HomePage {
   }
 
   //  TOMAR IMAGEN DESDE LA CAMARA
-  capturarImagen(sourceType: PictureSourceType) {
 
+  async capturarImagen(sourceType: PictureSourceType){
+    const actionSheet = await this.asC.create({
+      header: 'Abrir Imagen',
+      buttons: [{
+        text: 'Galería',
+        icon: 'images',
+        handler: () => {
+          this.tomarFoto(this.camara.PictureSourceType.PHOTOLIBRARY);
+        }
+      }, {
+        text: 'Cámara',
+        icon: 'camera',
+        handler: () => {
+          this.tomarFoto(this.camara.PictureSourceType.CAMERA);
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  tomarFoto(sourceType: PictureSourceType) {
+    const opciones: CameraOptions = {
+      quality: 100,
+      destinationType: this.camara.DestinationType.DATA_URL,
+      saveToPhotoAlbum: false,
+      correctOrientation: true,
+      sourceType: sourceType
+    };
+
+    this.camara.getPicture(opciones).then((imageData) => {
+      this.imagen = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      this.presentToast('Could not fetch image');
+    });
+
+  }
+
+  async presentToast(text) {
+    const toast = await this.toast.create({
+        message: text,
+        position: 'bottom',
+        duration: 5000
+    });
+    toast.present();
   }
 
   //  OBTENER EL URL DE LA IMAGEN
