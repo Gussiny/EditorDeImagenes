@@ -4,6 +4,8 @@ import { File } from '@ionic-native/file/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController, Platform } from '@ionic/angular';
 import { base64ToFile } from 'ngx-image-cropper';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 
 @Component({
   selector: 'app-guardar',
@@ -14,7 +16,7 @@ export class GuardarPage{
 
   imagenCortada = null;
   constructor(private toast: ToastController, private base64ToGallery: Base64ToGallery, private router: Router,
-              private route: ActivatedRoute, private file: File, private plat: Platform) {
+              private route: ActivatedRoute, private file: File, private plat: Platform, private sharing: SocialSharing) {
     this.route.queryParams.subscribe( params => {
       if (this.router.getCurrentNavigation().extras.state){
         this.imagenCortada = this.router.getCurrentNavigation().extras.state.imagenCortada;
@@ -52,7 +54,7 @@ export class GuardarPage{
     this.base64ToGallery.base64ToGallery(
       this.imagenCortada,
       {
-        prefix: 'img_',
+        prefix: 'IMG_',
         mediaScanner: false
       }
     ).then(
@@ -63,6 +65,15 @@ export class GuardarPage{
       (err) => {
         this.presentToast(err);
       });
+  }
+
+  compartirImagen(){
+    const dataBlob = base64ToFile(this.imagenCortada);
+    var opciones = {
+      files: [this.imagenCortada],
+      chooserTitle: 'Compartir Imagen'
+    };
+    this.sharing.shareWithOptions(opciones);
   }
 
   createFileName() {

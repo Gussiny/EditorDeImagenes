@@ -14,6 +14,8 @@ import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,8 @@ import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
     File,
     Camera,
     FilePath,
-    Base64ToGallery
+    Base64ToGallery,
+    SocialSharing
   ],
   bootstrap: [AppComponent]
 })
