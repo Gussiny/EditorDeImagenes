@@ -79,7 +79,7 @@ export class GuardarPage{
   createFileName() {
     const d = new Date();
     const n = d.getTime();
-    const newFileName = 'IMG_' + n + '.jpg';
+    const newFileName = 'IMG_' + n + '.png';
     return newFileName;
   }
 
