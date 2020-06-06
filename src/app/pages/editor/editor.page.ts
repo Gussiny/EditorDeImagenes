@@ -103,7 +103,7 @@ export class EditorPage {
     this.menuZoom = true;
     this.menuRotar = false;
     this.menuCortar = false;
-    this.disabled = true;
+    this.disabled = false;
   }
 
   //  ROTAR IMAGEN A LA IZQUIERDA

@@ -15,11 +15,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div class="verical-center">
+  <div class="vertical-center">
   <ion-grid>
     <ion-row>
       <ion-col class="logo-position">
-        <image-cropper *ngIf="imagen" 
+        <image-cropper class="imagen" *ngIf="imagen" 
           [imageBase64]="imagen" 
           [maintainAspectRatio]="maintainAspect"
           [containWithinAspectRatio]="containWithinAspectRatio" 
@@ -36,11 +36,6 @@
           (imageLoaded)="imageLoaded()" 
           outputType="base64">
         </image-cropper>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        
       </ion-col>
     </ion-row>
   </ion-grid>

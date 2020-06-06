@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
+import { File } from '@ionic-native/file/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, Platform } from '@ionic/angular';
+import { base64ToFile } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-guardar',
   templateUrl: './guardar.page.html',
   styleUrls: ['./guardar.page.scss'],
 })
-export class GuardarPage {
+export class GuardarPage{
 
   imagenCortada = null;
   constructor(private toast: ToastController, private base64ToGallery: Base64ToGallery, private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private file: File, private plat: Platform) {
     this.route.queryParams.subscribe( params => {
       if (this.router.getCurrentNavigation().extras.state){
         this.imagenCortada = this.router.getCurrentNavigation().extras.state.imagenCortada;
@@ -22,7 +24,31 @@ export class GuardarPage {
 
   //  GUARDAR IMAGEN EN GALERIA
   guardarImagen() {
-    // base64ToFile(this.imagenCortada);
+    const dataBlob = base64ToFile(this.imagenCortada);
+    const folderpath = this.file.dataDirectory;
+    const filename = this.createFileName();
+    const contentTye = 'image/png';
+    if (this.plat.is('android')){
+      this.guardarAndroid();
+    }else {
+      this.guardarIOS(folderpath, filename, dataBlob);
+    }
+  }
+
+  guardarIOS(folderpath, filename, dataBlob){
+    this.file.writeFile(folderpath, filename, dataBlob)
+    .then(
+      (path) => {
+        this.presentToast(folderpath + '/' + filename);
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        this.presentToast(err);
+      }
+    );
+  }
+
+  guardarAndroid(){
     this.base64ToGallery.base64ToGallery(
       this.imagenCortada,
       {
@@ -36,8 +62,14 @@ export class GuardarPage {
       },
       (err) => {
         this.presentToast(err);
-      }
-    );
+      });
+  }
+
+  createFileName() {
+    const d = new Date();
+    const n = d.getTime();
+    const newFileName = 'IMG_' + n + '.jpg';
+    return newFileName;
   }
 
    //  MOSTRAR TOAST

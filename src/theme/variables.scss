@@ -3,25 +3,68 @@
 
 /** Ionic CSS Variables **/
 :root {
+  #bigPreview {
+    web-photo-filter {
+      canvas {
+        max-width: 100%;
+        max-height: 50vh;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: contain;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 50vh;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: contain;
+      }
+    }
+
+    web-photo-filter.no-original {
+      img {
+        display: none;
+      }
+    }
+
+    web-photo-filter.only-original {
+      canvas {
+        display: none;
+      }
+    }
+  }
+
   #preview {
     web-photo-filter {
-      canvas, img {
-        max-width: 90%;
-        max-height: 50%;
+      canvas {
+        object-fit: contain;
+        max-width: 80%;
+        height: 15vh;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
       }
-      img{
+
+      img {
+
+        object-fit: contain;
+        max-width: 80%;
+        height: 15vh;
         display: block;
         margin-left: auto;
         margin-right: auto;
       }
     }
- 
+
     web-photo-filter.no-original {
-        img {
-          display: none;
-        }
+      img {
+        display: none;
+      }
     }
- 
+
     web-photo-filter.only-original {
       canvas {
         display: none;

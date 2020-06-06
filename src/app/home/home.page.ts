@@ -66,7 +66,7 @@ export class HomePage {
     };
 
     this.camara.getPicture(opciones).then((imageData) => {
-      this.imagen = 'data:image/jpeg;base64,' + imageData;
+      this.imagen = 'data:image/png;base64,' + imageData;
       this.pasarImagen();
     }, (err) => {
       this.presentToast('Could not fetch image');

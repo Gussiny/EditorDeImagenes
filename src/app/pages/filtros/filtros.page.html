@@ -16,7 +16,7 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col class="logo-position">
-        <div id="preview" *ngIf="imagen">
+        <div id="bigPreview" *ngIf="imagen">
           <web-photo-filter 
             [class.no-original]="selectedFilter != ''" 
             [class.only-original]="selectedFilter == ''"
@@ -39,7 +39,7 @@
       <div id="preview">
         <web-photo-filter 
           [class.no-original]="i > 0" 
-          src="assets/default.jpg" 
+          [src]="imagen" 
           keep="false" 
           [filter]="opts.value">
         </web-photo-filter>
